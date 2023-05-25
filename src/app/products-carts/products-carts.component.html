@@ -1,0 +1,7 @@
+<div class="my-6">
+  <div *ngFor="let cartItem of cartItems" class="flex flex-row gap-2 m-2 border border-gray-100 rounded-lg p-4">
+    <img [src]="cartItem.image" class="w-14 h-14 object-contain">
+    <app-product-details [product]="cartItem" />
+  </div>
+  <div *ngIf="cartItems.length > 0">Total: {{ calculateTotal() | currency }}</div>
+</div>
