@@ -11,6 +11,10 @@ export class ProductsCartsComponent {
 
   constructor(private productsCartService: ProductsCartService) { }
 
+  removeItem(index: number): void {
+    this.productsCartService.removeFromCart(index);
+  }
+
   calculateTotal(): number {
     return this.cartItems.reduce((acc, item) => acc + item.price, 0);
   }

@@ -7,7 +7,7 @@ import { Product } from '../models/product.model';
   templateUrl: './products-catalogue.component.html',
 })
 export class ProductsCatalogueComponent {
-  items = [
+  items: Product[] = [
     {
       "id": 1,
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
