@@ -8,7 +8,7 @@ import { StoreService } from 'src/app/store.service';
 })
 export class ProductsCategoriesComponent {
   selectedCategory$ = this.storeService.selectedCategory$;
-  categories$: Observable<string[]>;
+  categories$: Observable<Map<string, number>>;
 
   constructor(private storeService: StoreService) {
     this.selectedCategory$ = this.storeService.selectedCategory$;

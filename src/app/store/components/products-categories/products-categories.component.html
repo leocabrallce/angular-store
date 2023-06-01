@@ -6,11 +6,11 @@
     class="border inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-indigo-600 hover:bg-slate-200 transition">
     all categories
   </button>
-  <button *ngFor="let category of categories$ | async" (click)="selectCategory(category)" [ngClass]="{
-      'border-indigo-600': category === (selectedCategory$ | async),
-      'border-transparent': category !== (selectedCategory$ | async)
+  <button *ngFor="let category of categories$ | async | keyvalue" (click)="selectCategory(category.key)" [ngClass]="{
+      'border-indigo-600': category.key === (selectedCategory$ | async),
+      'border-transparent': category.key !== (selectedCategory$ | async)
     }"
     class="border inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-indigo-600 hover:bg-slate-200 transition">
-    {{category}}
+    {{category.key}} ({{category.value}})
   </button>
 </div>

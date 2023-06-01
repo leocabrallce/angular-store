@@ -63,8 +63,12 @@ export class StoreService {
 
   categories$ = this.allProducts$.pipe(
     map((products: Product[]) => {
-      const categories = products.map(product => product.category);
-      return Array.from(new Set(categories));
+      const categoriesAndCounts: Map<string, number> = new Map();
+      products.forEach((product) => {
+        const count = categoriesAndCounts.get(product.category) || 0;
+        categoriesAndCounts.set(product.category, count + 1);
+      });
+      return categoriesAndCounts;
     })
   );
 
