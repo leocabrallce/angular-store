@@ -7,6 +7,7 @@ import { ProductsCartComponent } from './components/products-cart/products-cart.
 import { StoreService } from '../store.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsCartItemComponent } from './components/products-cart-item/products-cart-item.component';
+import { ProductsCategoriesComponent } from './components/products-categories/products-categories.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ProductsCartItemComponent } from './components/products-cart-item/produ
     ProductsCatalogueItemComponent,
     ProductsDetailsComponent,
     ProductsCartComponent,
-    ProductsCartItemComponent
+    ProductsCartItemComponent,
+    ProductsCategoriesComponent
   ],
   imports: [
     CommonModule,
@@ -22,9 +24,8 @@ import { ProductsCartItemComponent } from './components/products-cart-item/produ
   ],
   exports: [
     ProductsCatalogueComponent,
-    ProductsCatalogueItemComponent,
-    ProductsDetailsComponent,
-    ProductsCartComponent
+    ProductsCartComponent,
+    ProductsCategoriesComponent
   ],
   providers: [
     StoreService,
