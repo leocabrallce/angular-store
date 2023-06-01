@@ -8,6 +8,8 @@ import { StoreService } from '../store.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsCartItemComponent } from './components/products-cart-item/products-cart-item.component';
 import { ProductsCategoriesComponent } from './components/products-categories/products-categories.component';
+import { ProductsSearchComponent } from './components/products-search/products-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,16 +18,19 @@ import { ProductsCategoriesComponent } from './components/products-categories/pr
     ProductsDetailsComponent,
     ProductsCartComponent,
     ProductsCartItemComponent,
-    ProductsCategoriesComponent
+    ProductsCategoriesComponent,
+    ProductsSearchComponent
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   exports: [
     ProductsCatalogueComponent,
     ProductsCartComponent,
-    ProductsCategoriesComponent
+    ProductsCategoriesComponent,
+    ProductsSearchComponent
   ],
   providers: [
     StoreService,
