@@ -1,2 +1,6 @@
-<div [class.text-sm]="small === true" class="text-indigo-500 font-bold">{{ product.title }}</div>
-<p class="text-gray-500 text-sm mb-3">{{ product.price | currency }}</p>
+<div [class.text-sm]="small" [class.line-clamp-1]="lineClamp" class="text-indigo-500">
+  {{ product.title }}
+</div>
+<p [class.text-xs]="small" [class.text-sm]="!small" class="text-gray-500 mb-3 font-light">
+  {{ product.price | currency }}
+</p>

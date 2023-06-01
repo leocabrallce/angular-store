@@ -11,4 +11,7 @@ export class ProductsDetailsComponent {
 
   @Input()
   small!: boolean;
+
+  @Input()
+  lineClamp!: boolean;
 }

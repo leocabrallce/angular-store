@@ -1,14 +1,4 @@
 <div class="my-6 flex flex-col gap-2">
-  <div *ngFor="let cartItem of cartItems$ | async; let i = index"
-    class="bg-white flex flex-row justify-between gap-2 border border-gray-100 rounded-lg p-4">
-    <div class="flex flex-row gap-2">
-      <img [src]="cartItem.image" class="w-14 h-14 object-contain shrink-0">
-      <app-products-details [small]="true" [product]="cartItem" />
-    </div>
-    <div class="flex flex-col gap-2">
-      <button (click)="removeItem(i)"
-        class="text-red-500 border border-red-500 rounded px-4 py-2 text-xs">Remove</button>
-    </div>
-  </div>
+  <app-products-cart-item *ngFor="let cartItem of cartItems$ | async; let i = index" [product]="cartItem" [index]="i" />
   <div>Total: {{ total$ | async | currency }}</div>
 </div>
