@@ -85,6 +85,7 @@ export class StoreService {
 
   changeKeywords(keywords: string) {
     this.keywords$.next(keywords);
+    this.currentPage$.next(1);
   }
 
   changeCategory(category: string) {
