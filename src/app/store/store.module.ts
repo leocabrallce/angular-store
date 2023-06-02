@@ -11,6 +11,7 @@ import { ProductsCategoriesComponent } from './components/products-categories/pr
 import { ProductsSearchComponent } from './components/products-search/products-search.component';
 import { FormsModule } from '@angular/forms';
 import { ProductsPaginationComponent } from './components/products-pagination/products-pagination.component';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductsPaginationComponent } from './components/products-pagination/pr
     ProductsCartItemComponent,
     ProductsCategoriesComponent,
     ProductsSearchComponent,
-    ProductsPaginationComponent
+    ProductsPaginationComponent,
+    HighlightDirective
   ],
   imports: [
     CommonModule,
