@@ -10,6 +10,7 @@ import { ProductsCartItemComponent } from './components/products-cart-item/produ
 import { ProductsCategoriesComponent } from './components/products-categories/products-categories.component';
 import { ProductsSearchComponent } from './components/products-search/products-search.component';
 import { FormsModule } from '@angular/forms';
+import { ProductsPaginationComponent } from './components/products-pagination/products-pagination.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     ProductsCartComponent,
     ProductsCartItemComponent,
     ProductsCategoriesComponent,
-    ProductsSearchComponent
+    ProductsSearchComponent,
+    ProductsPaginationComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     ProductsCatalogueComponent,
     ProductsCartComponent,
     ProductsCategoriesComponent,
-    ProductsSearchComponent
+    ProductsSearchComponent,
+    ProductsPaginationComponent
   ],
   providers: [
     StoreService,

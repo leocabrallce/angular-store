@@ -39,7 +39,7 @@ export class StoreService {
   );
 
   numberOfPages$ = combineLatest([
-    this.products$,
+    this.allProducts$,
     this.keywords$,
     this.selectedCategory$,
   ]).pipe(
@@ -61,10 +61,17 @@ export class StoreService {
     })
   );
 
-  categories$ = this.allProducts$.pipe(
-    map((products: Product[]) => {
+  categories$ = combineLatest([
+    this.allProducts$,
+    this.keywords$,
+  ]).pipe(
+    map(([products, keywords]) => {
+      let filteredProducts = products;
+      if (keywords) {
+        filteredProducts = filteredProducts.filter((product) => product.title.toLowerCase().includes(keywords.toLowerCase()));
+      }
       const categoriesAndCounts: Map<string, number> = new Map();
-      products.forEach((product) => {
+      filteredProducts.forEach((product) => {
         const count = categoriesAndCounts.get(product.category) || 0;
         categoriesAndCounts.set(product.category, count + 1);
       });
