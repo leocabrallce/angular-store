@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ajax } from 'rxjs/ajax';
 import Product from '../types/product.model';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, withLatestFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,27 +18,7 @@ export class StoreService {
 
   allProducts$ = ajax.getJSON<Product[]>('/assets/store.json');
 
-  products$ = combineLatest([
-    this.allProducts$,
-    this.currentPage$,
-    this.keywords$,
-    this.selectedCategory$,
-  ]).pipe(
-    map(([products, currentPage, keywords, category]) => {
-      let filteredProducts = products;
-      if (keywords) {
-        filteredProducts = filteredProducts.filter((product) => product.title.toLowerCase().includes(keywords.toLowerCase()));
-      }
-      if (category) {
-        filteredProducts = filteredProducts.filter((product) => product.category === category);
-      }
-      const start = (currentPage - 1) * this.pageSize;
-      const end = start + this.pageSize;
-      return filteredProducts.slice(start, end);
-    })
-  );
-
-  numberOfPages$ = combineLatest([
+  filteredProducts$ = combineLatest([
     this.allProducts$,
     this.keywords$,
     this.selectedCategory$,
@@ -51,7 +31,26 @@ export class StoreService {
       if (category) {
         filteredProducts = filteredProducts.filter((product) => product.category === category);
       }
-      return Math.ceil(filteredProducts.length / this.pageSize);
+      return filteredProducts;
+    })
+  );
+
+  products$ = combineLatest([
+    this.filteredProducts$,
+    this.currentPage$,
+  ]).pipe(
+    map(([products, currentPage]) => {
+      const start = (currentPage - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return products.slice(start, end);
+    })
+  );
+
+  numberOfPages$ = combineLatest([
+    this.filteredProducts$,
+  ]).pipe(
+    map(([products]) => {
+      return Math.ceil(products.length / this.pageSize);
     })
   );
 
@@ -90,6 +89,7 @@ export class StoreService {
 
   changeCategory(category: string) {
     this.selectedCategory$.next(category);
+    this.currentPage$.next(1);
   }
 
   addItemsToCart(product: Product) {
