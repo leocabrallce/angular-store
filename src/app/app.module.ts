@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { CartModule } from './cart/cart.module';
+import { CheckoutModule } from './checkout/checkout.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CartModule } from './cart/cart.module';
     CatalogueModule,
     CartModule,
     RouterModule,
+    CheckoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
