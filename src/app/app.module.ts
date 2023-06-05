@@ -3,9 +3,9 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { StoreModule } from './store/store.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CatalogueModule } from './catalogue/catalogue.module';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -13,9 +13,9 @@ import { CatalogueModule } from './catalogue/catalogue.module';
   ],
   imports: [
     BrowserModule,
-    StoreModule,
     FontAwesomeModule,
     CatalogueModule,
+    CartModule,
     RouterModule,
   ],
   providers: [],

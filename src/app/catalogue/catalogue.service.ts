@@ -9,8 +9,6 @@ import { BehaviorSubject, combineLatest, map } from 'rxjs';
 export class CatalogueService {
   // TODO: move this to a injected config file
   private pageSize = 6;
-  private cartItemsSubject = new BehaviorSubject<Product[]>([]);
-  cartItems$ = this.cartItemsSubject.asObservable();
 
   keywords$ = new BehaviorSubject<string>('');
   selectedCategory$ = new BehaviorSubject<string>('');
@@ -54,12 +52,6 @@ export class CatalogueService {
     })
   );
 
-  total$ = this.cartItems$.pipe(
-    map((items: Product[]) => {
-      return items.reduce((acc, item) => acc + item.price, 0);
-    })
-  );
-
   categories$ = combineLatest([
     this.allProducts$,
     this.keywords$,
@@ -90,24 +82,6 @@ export class CatalogueService {
   changeCategory(category: string) {
     this.selectedCategory$.next(category);
     this.currentPage$.next(1);
-  }
-
-  addItemsToCart(product: Product) {
-    const currentItems = this.cartItemsSubject.getValue();
-    const newItems = [...currentItems, product];
-    this.cartItemsSubject.next(newItems);
-  }
-
-  removeItemFromCart(product: Product) {
-    const currentItems = this.cartItemsSubject.getValue();
-    const newItems = currentItems.filter(item => item.id !== product.id);
-    this.cartItemsSubject.next(newItems);
-  }
-
-  removeItemFromCartByIndex(index: number) {
-    const currentItems = this.cartItemsSubject.getValue();
-    const newItems = currentItems.filter((item, i) => i !== index);
-    this.cartItemsSubject.next(newItems);
   }
 
   constructor() { }

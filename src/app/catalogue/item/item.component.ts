@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { CatalogueService } from 'src/app/catalogue/catalogue.service';
+import { CartService } from 'src/app/cart/cart.service';
 import Product from 'src/types/product.model';
 
 @Component({
@@ -11,9 +11,10 @@ export class ItemComponent {
   @Input() product!: Product;
   faCartPlus = faCartPlus;
 
-  constructor(private catalogueService: CatalogueService) { }
+  constructor(private cartService: CartService) { }
 
+  // TODO: Double check if I can import a service from a different module
   addToCart(product: Product): void {
-    this.catalogueService.addItemsToCart(product);
+    this.cartService.addItemsToCart(product);
   }
 }

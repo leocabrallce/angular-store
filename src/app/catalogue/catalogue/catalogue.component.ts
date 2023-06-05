@@ -10,11 +10,7 @@ import Product from 'src/types/product.model';
 export class CatalogueComponent {
   products$: Observable<Product[]>;
 
-  constructor(private storeService: CatalogueService) {
-    this.products$ = this.storeService.products$;
-  }
-
-  addItemsToCart(product: Product): void {
-    this.storeService.addItemsToCart(product);
+  constructor(private catalogueService: CatalogueService) {
+    this.products$ = this.catalogueService.products$;
   }
 }
