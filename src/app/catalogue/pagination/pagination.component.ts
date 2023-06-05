@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StoreService } from 'src/app/store.service';
+import { CatalogueService } from 'src/app/catalogue/catalogue.service';
 
 @Component({
-  selector: 'app-products-pagination',
-  templateUrl: './products-pagination.component.html',
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
 })
-export class ProductsPaginationComponent {
+export class PaginationComponent {
   numberOfPages$: Observable<number>;
   currentPage$: Observable<number>;
   pages!: number[];
   firstPage = 1;
   lastPage = 1;
 
-  constructor(private storeService: StoreService) {
-    this.numberOfPages$ = this.storeService.numberOfPages$;
-    this.currentPage$ = this.storeService.currentPage$;
+  constructor(private catalogueService: CatalogueService) {
+    this.numberOfPages$ = this.catalogueService.numberOfPages$;
+    this.currentPage$ = this.catalogueService.currentPage$;
     this.numberOfPages$.subscribe((numberOfPages) => {
       this.pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
       this.lastPage = numberOfPages;
@@ -23,6 +23,6 @@ export class ProductsPaginationComponent {
   }
 
   changePage(page: number): void {
-    this.storeService.changePage(page);
+    this.catalogueService.changePage(page);
   }
 }

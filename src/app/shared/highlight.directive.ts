@@ -1,6 +1,6 @@
 import { Directive, ElementRef, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { StoreService } from '../store.service';
+import { CatalogueService } from 'src/app/catalogue/catalogue.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Directive({
@@ -10,8 +10,8 @@ export class HighlightDirective implements OnDestroy {
   keywords$: Observable<string>;
   keywordsSubscription!: Subscription;
 
-  constructor(private storeService: StoreService, private el: ElementRef, private sanitizer: DomSanitizer) {
-    this.keywords$ = this.storeService.keywords$;
+  constructor(private catalogueService: CatalogueService, private el: ElementRef, private sanitizer: DomSanitizer) {
+    this.keywords$ = this.catalogueService.keywords$;
   }
 
   ngAfterViewChecked() {

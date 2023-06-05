@@ -3,10 +3,10 @@
     <div class="col-span-2">
       <h2 class="text-indigo-500 text-2xl font-semibold">E-commerce</h2>
       <div class="mt-5 flex flex-row justify-between">
-        <app-products-categories />
-        <app-products-search />
+        <app-categories />
+        <app-search />
       </div>
-      <app-products-catalogue />
+      <app-catalogue />
     </div>
     <div>
       <h2 class="text-indigo-500 text-2xl font-semibold">Cart</h2>
@@ -14,6 +14,8 @@
     </div>
   </div>
   <div class="w-full">
-    <app-products-pagination />
+    <app-pagination />
   </div>
 </div>
+
+<router-outlet></router-outlet>

@@ -4,7 +4,7 @@
 </div>
 
 <div class="flex flex-row justify-between gap-2">
-  <app-products-details [product]="product" />
+  <app-product-details [product]="product" [lineClamp]="true" />
   <div class="w-8 h-8">
     <button class="w-8 h-8 text-indigo-500 border border-indigo-500 hover:bg-slate-100 font-bold rounded transition"
       (click)="addToCart(product)">
