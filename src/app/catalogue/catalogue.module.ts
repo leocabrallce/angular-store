@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { CatalogueRoutingModule } from './catalogue-routing.module';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { ItemComponent } from './item/item.component';
 import { CategoriesComponent } from './categories/categories.component';
@@ -18,12 +17,11 @@ import { CatalogueService } from './catalogue.service';
     ItemComponent,
     CategoriesComponent,
     PaginationComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     FontAwesomeModule,
     CommonModule,
-    CatalogueRoutingModule,
     SharedModule,
   ],
   exports: [
