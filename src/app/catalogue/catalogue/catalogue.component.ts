@@ -25,6 +25,7 @@ export class CatalogueComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.catalogueService.reset();
     this.currentCategory?.unsubscribe();
   }
 }

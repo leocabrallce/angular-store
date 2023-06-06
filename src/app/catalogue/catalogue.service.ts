@@ -84,5 +84,11 @@ export class CatalogueService {
     this.currentPage$.next(1);
   }
 
+  reset() {
+    this.changeCategory('');
+    this.changeKeywords('');
+    this.changePage(1);
+  }
+
   constructor() { }
 }
