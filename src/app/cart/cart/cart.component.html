@@ -1,4 +1,10 @@
 <div class="my-6 flex flex-col gap-2">
   <app-item *ngFor="let cartItem of cartItems$ | async; let i = index" [product]="cartItem" [index]="i" />
   <div>Total: {{ total$ | async | currency }}</div>
+  <a *ngIf="checkoutAvailable; else goToCheckout" class="border border-indigo-500 text-indigo-500 px-4 py-2 rounded"
+    routerLink="/">Continue
+    Shopping</a>
+  <ng-template #goToCheckout>
+    <a class="bg-indigo-500 text-white px-4 py-2 rounded" routerLink="/checkout">Go to Checkout</a>
+  </ng-template>
 </div>
