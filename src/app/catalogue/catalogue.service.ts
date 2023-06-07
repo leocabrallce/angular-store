@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class CatalogueService implements OnDestroy {
   private pageSize: number;
   private dataSourceURL: string;
+  private language: string;
   private subscription: any;
 
   constructor(
@@ -20,8 +21,13 @@ export class CatalogueService implements OnDestroy {
   ) {
     this.pageSize = config.pageSize;
     this.dataSourceURL = config.dataSourceURL;
+    this.language = config.language;
 
-    this.subscription = this.http.get<Product[]>(this.dataSourceURL).subscribe((products) => {
+    this.subscription = this.http.get<Product[]>(this.dataSourceURL, {
+      headers: {
+        'Accept-Language': this.language,
+      }
+    }).subscribe((products) => {
       this.allProducts$.next(products);
     });
   }

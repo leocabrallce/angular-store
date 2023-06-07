@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const productsJSON = require('./assets/products.json'); // Or update this PATH with the location of your local fixture
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -23,9 +22,11 @@ app.get('/', (_, res) => {
   res.send('Email API service is up and running');
 });
 
-app.get('/products', (_, res) => {
+app.get('/products', async (req, res) => {
   console.log('get /products');
-  res.json(productsJSON);
+  const acceptedLanguage = req.headers['accept-language'] || 'en';
+  const products = await import(`./assets/products.${acceptedLanguage}.json`, { assert: { type: 'json' } });
+  res.json(products.default);
 });
 
 app.post('/orders', (req, res) => {
