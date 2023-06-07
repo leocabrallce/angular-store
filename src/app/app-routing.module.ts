@@ -5,8 +5,12 @@ import { CheckoutComponent } from './checkout/checkout/checkout.component';
 
 const routes: Routes = [
   {
+    path: 'legal',
+    loadChildren: () => import('./legal/legal.module').then(m => m.LegalModule)
+  },
+  {
     path: 'checkout',
-    component: CheckoutComponent
+    loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)
   },
   {
     path: '',

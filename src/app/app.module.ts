@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { CartModule } from './cart/cart.module';
 import { CheckoutModule } from './checkout/checkout.module';
+import { LegalModule } from './legal/legal.module';
+import { APP_CONFIG, webAppConfig } from './app.settings';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { CheckoutModule } from './checkout/checkout.module';
     CatalogueModule,
     CartModule,
     RouterModule,
-    CheckoutModule
+    CheckoutModule,
+    LegalModule
   ],
-  providers: [],
+  providers: [{ provide: APP_CONFIG, useValue: webAppConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
