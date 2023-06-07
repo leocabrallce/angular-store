@@ -24,9 +24,14 @@ app.get('/', (_, res) => {
 
 app.get('/products', async (req, res) => {
   console.log('get /products');
-  const acceptedLanguage = req.headers['accept-language'] || 'en';
-  const products = await import(`./assets/products.${acceptedLanguage}.json`, { assert: { type: 'json' } });
-  res.json(products.default);
+  const acceptedLanguage = (req.headers['accept-language'] || 'en-US').split('-')[0].toLowerCase();
+  let products = [];
+  try {
+    products = (await import(`./assets/products.${acceptedLanguage}.json`, { assert: { type: 'json' } }));
+  } catch (error) {
+    products = (await import(`./assets/products.en.json`, { assert: { type: 'json' } }));
+  }
+  res.json(products?.default || products);
 });
 
 app.post('/orders', (req, res) => {

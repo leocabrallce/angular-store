@@ -1,4 +1,20 @@
 <h2 class="text-indigo-500 text-2xl font-semibold">E-commerce</h2>
+<div class="mt-5 flex flex-row gap-4">
+  <button (click)="selectLanguage('en')" [ngClass]="{
+      'border-indigo-600': 'en' === language,
+      'border-transparent': 'en' !== language
+    }"
+    class="border inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-indigo-600 hover:bg-slate-200 transition">
+    🇺🇸
+  </button>
+  <button (click)="selectLanguage('fr')" [ngClass]="{
+      'border-indigo-600': 'fr' === language,
+      'border-transparent': 'fr' !== language
+    }"
+    class="border inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-indigo-600 hover:bg-slate-200 transition">
+    🇫🇷
+  </button>
+</div>
 <div class="mt-5 flex flex-row justify-between">
   <app-categories />
   <app-search />

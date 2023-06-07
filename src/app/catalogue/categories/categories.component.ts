@@ -10,6 +10,8 @@ import { CatalogueService } from 'src/app/catalogue/catalogue.service';
 export class CategoriesComponent {
   selectedCategory$ = this.catalogueService.selectedCategory$;
   categories$: Observable<Map<string, number>>;
+  language: string = this.catalogueService.language;
+  title: string = 'all categories';
 
   constructor(private catalogueService: CatalogueService, private router: Router) {
     this.selectedCategory$ = this.catalogueService.selectedCategory$;

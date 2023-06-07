@@ -4,7 +4,7 @@
       'border-transparent': '' !== (selectedCategory$ | async)
     }"
     class="border inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-indigo-600 hover:bg-slate-200 transition">
-    all categories
+    {{ title }}
   </button>
   <button *ngFor="let category of categories$ | async | keyvalue" (click)="selectCategory(category.key)" [ngClass]="{
       'border-indigo-600': category.key === (selectedCategory$ | async),
