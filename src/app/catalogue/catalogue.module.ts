@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CatalogueComponent } from './catalogue/catalogue.component';
@@ -23,6 +24,7 @@ import { CatalogueService } from './catalogue.service';
     FontAwesomeModule,
     CommonModule,
     SharedModule,
+    HttpClientModule,
   ],
   exports: [
     CatalogueComponent,

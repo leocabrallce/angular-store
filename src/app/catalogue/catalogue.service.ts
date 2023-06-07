@@ -1,20 +1,39 @@
-import { Injectable } from '@angular/core';
-import { ajax } from 'rxjs/ajax';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 import Product from 'src/types/product.model';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { AppConfig } from 'src/types/app-config.model';
+import { APP_CONFIG } from 'src/app/app.settings';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CatalogueService {
-  // TODO: move this to a injected config file
-  private pageSize = 6;
+export class CatalogueService implements OnDestroy {
+  private pageSize: number;
+  private dataSourceURL: string;
+  private subscription: any;
+
+  constructor(
+    @Inject(APP_CONFIG)
+    config: AppConfig,
+    private http: HttpClient,
+  ) {
+    this.pageSize = config.pageSize;
+    this.dataSourceURL = config.dataSourceURL;
+
+    this.subscription = this.http.get<Product[]>(this.dataSourceURL).subscribe((products) => {
+      this.allProducts$.next(products);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   keywords$ = new BehaviorSubject<string>('');
   selectedCategory$ = new BehaviorSubject<string>('');
   currentPage$ = new BehaviorSubject<number>(1);
-
-  allProducts$ = ajax.getJSON<Product[]>('/assets/store.json');
+  allProducts$ = new BehaviorSubject<Product[]>([]);
 
   filteredProducts$ = combineLatest([
     this.allProducts$,
@@ -89,6 +108,4 @@ export class CatalogueService {
     this.changeKeywords('');
     this.changePage(1);
   }
-
-  constructor() { }
 }
