@@ -1,12 +1,38 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/cart/cart.service';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
 })
 export class CheckoutComponent {
-  constructor(private http: HttpClient) { }
+  faCheck = faCheck;
+  form = new FormGroup({
+    firstName: new FormControl<string>('', { validators: Validators.required }),
+    lastName: new FormControl<string>('', { validators: Validators.required }),
+    email: new FormControl<string>('', { validators: Validators.required }),
+    address: new FormControl<string>('', { validators: Validators.required }),
+    country: new FormControl<string>('', { validators: Validators.required }),
+    zipcode: new FormControl<string>('', { validators: Validators.required }),
+    state: new FormControl<string>('', { validators: Validators.required }),
+    acceptedTerms: new FormControl<boolean>(false, { validators: Validators.requiredTrue }),
+  });
+  dialogOpen = false;
+
+  constructor(private http: HttpClient, private cartService: CartService, private router: Router) { }
+
+  submit() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+      this.cartService.clearCart();
+      this.sendEmail();
+      this.dialogOpen = true;
+    }
+  }
 
   sendEmail() {
     this.http.post('http://localhost:3000/orders', {

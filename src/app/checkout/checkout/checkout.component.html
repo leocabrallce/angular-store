@@ -1,5 +1,113 @@
 <div class="flex flex-col gap-10">
-  <p>checkout works!</p>
-  <a class="bg-gray-800 text-white px-4 py-2 rounded w-fit" (click)="sendEmail()">Send Email</a>
-  <a class="bg-gray-800 text-white px-4 py-2 rounded w-fit" routerLink="/">back to catalogue</a>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="border-b border-gray-800/10 pb-6">
+      <h2 class="text-gray-900 text-2xl font-semibold">Checkout</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600">Please enter your personal details</p>
+
+      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
+        <div class="sm:col-span-3">
+          <label for="first-name" class="block text-sm font-medium leading-6 text-gray-800">First name</label>
+          <div class="mt-1">
+            <input [formControl]="form.controls.firstName" type="text" name="first-name" id="first-name"
+              autocomplete="given-name"
+              class="block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div class="sm:col-span-3">
+          <label for="last-name" class="block text-sm font-medium leading-6 text-gray-800">Last name</label>
+          <div class="mt-1">
+            <input [formControl]="form.controls.lastName" type="text" name="last-name" id="last-name"
+              autocomplete="family-name"
+              class="block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-800">Email address</label>
+          <div class="mt-1">
+            <input [formControl]="form.controls.email" id="email" name="email" type="email" autocomplete="email"
+              class="block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label for="street-address" class="block text-sm font-medium leading-6 text-gray-800">Street address</label>
+          <div class="mt-1">
+            <input [formControl]="form.controls.address" type="text" name="street-address" id="street-address"
+              autocomplete="street-address"
+              class="block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="zip-code" class="block text-sm font-medium leading-6 text-gray-800">ZIP code</label>
+          <div class="mt-1">
+            <input [formControl]="form.controls.zipcode" type="text" name="zip-code" id="zip-code"
+              autocomplete="postal-code"
+              class="block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="country" class="block text-sm font-medium leading-6 text-gray-800">Country</label>
+          <div class="mt-1">
+            <select [formControl]="form.controls.country" id="country" name="country" autocomplete="country-name"
+              class="h-9 block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:max-w-xs sm:text-sm sm:leading-6">
+              <option>Brazil</option>
+              <option>Spain</option>
+              <option>United States</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="region" class="block text-sm font-medium leading-6 text-gray-800">State / Province</label>
+          <div class="mt-1">
+            <input [formControl]="form.controls.state" type="text" name="region" id="region"
+              autocomplete="address-level1"
+              class="block w-full rounded-md border-0 p-1.5 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-800 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+      </div>
+
+      <fieldset>
+        <div class="mt-8 space-y-6">
+          <div class="relative flex gap-x-3">
+            <div class="flex h-6 items-center">
+              <input [formControl]="form.controls.acceptedTerms" id="comments" name="comments" type="checkbox"
+                class="h-4 w-4 rounded border-gray-300 text-gray-800 focus:ring-gray-800">
+            </div>
+            <div class="text-sm leading-6">
+              <label for="comments" class="font-medium text-gray-500">I
+                hereby accept the Terms of Use of this
+                site</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button [routerLink]="['/']" routerLinkActive="router-link-active" type="button"
+        class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+      <button type="submit" [disabled]="!form.valid"
+        class="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm disabled:bg-slate-300 hover:bg-grey-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800 transition">Save</button>
+    </div>
+  </form>
 </div>
+
+<dialog [open]="dialogOpen">
+  <div class="fixed inset-0 flex items-center justify-center bg-slate-400/30">
+    <div class="bg-white rounded-lg p-4 max-w-xs max-h-full text-center">
+      <div class="mb-4">
+        <fa-icon class="text-green-500" [icon]="faCheck" size="4x"></fa-icon>
+      </div>
+      <p class="text-sm text-gray-800">Your changes have been saved.</p>
+      <div class="mt-4">
+        <button type="button" [routerLink]="['/']" (click)="dialogOpen = false"
+          class="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-grey-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800 transition">OK</button>
+      </div>
+    </div>
+  </div>
+</dialog>
