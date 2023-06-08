@@ -5,7 +5,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { ItemComponent } from './item/item.component';
-import { CategoriesComponent } from './categories/categories.component';
 import { SharedModule } from '../shared/shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchComponent } from './search/search.component';
@@ -17,7 +16,6 @@ import { RouterModule } from '@angular/router';
   declarations: [
     CatalogueComponent,
     ItemComponent,
-    CategoriesComponent,
     PaginationComponent,
     SearchComponent,
   ],
@@ -30,7 +28,6 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     CatalogueComponent,
-    CategoriesComponent,
     PaginationComponent,
     SearchComponent,
   ],

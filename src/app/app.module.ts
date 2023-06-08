@@ -11,6 +11,7 @@ import { CheckoutModule } from './checkout/checkout.module';
 import { LegalModule } from './legal/legal.module';
 import { APP_CONFIG, webAppConfig } from './app.settings';
 import { ProductsService } from '../app/products.service';
+import { NavbarModule } from './navbar/navbar.module';
 
 function initializeAppFactory(
   productsService: ProductsService,
@@ -20,7 +21,7 @@ function initializeAppFactory(
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -30,7 +31,8 @@ function initializeAppFactory(
     CartModule,
     RouterModule,
     CheckoutModule,
-    LegalModule
+    LegalModule,
+    NavbarModule
   ],
   providers: [
     {

@@ -1,19 +1,30 @@
-<div class="m-4">
-  <div class="grid grid-cols-3 gap-6">
-    <div class="col-span-2">
-      <router-outlet class="hidden"></router-outlet>
+<div class="min-h-full">
+  <app-navbar />
+
+  <header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
     </div>
-    <div>
-      <h2 class="text-indigo-500 text-2xl font-semibold">Cart</h2>
-      <app-cart />
+  </header>
+  <main>
+    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-6">
+        <div class="col-span-2">
+          <router-outlet class="hidden"></router-outlet>
+        </div>
+        <div>
+          <h2 class="text-gray-900 text-2xl font-semibold">Cart</h2>
+          <app-cart />
+        </div>
+      </div>
+      <ul>
+        <li>
+          <a routerLink="/legal/terms">Terms of use</a>
+        </li>
+        <li>
+          <a routerLink="/legal/privacy">Privacy policy</a>
+        </li>
+      </ul>
     </div>
-  </div>
-  <ul>
-    <li>
-      <a routerLink="/legal/terms">Terms of use</a>
-    </li>
-    <li>
-      <a routerLink="/legal/privacy">Privacy policy</a>
-    </li>
-  </ul>
+  </main>
 </div>

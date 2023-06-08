@@ -11,11 +11,11 @@
   </ng-template>
   <ng-container *ngIf="(cartItems$ | async)?.length != 0">
     <div>Total: {{ total$ | async | currency }}</div>
-    <a *ngIf="checkoutAvailable; else goToCheckout" class="border border-indigo-500 text-indigo-500 px-4 py-2 rounded"
+    <a *ngIf="checkoutAvailable; else goToCheckout" class="border border-gray-800 text-gray-900 px-4 py-2 rounded"
       routerLink="/">Continue
       Shopping</a>
     <ng-template #goToCheckout>
-      <a class="bg-indigo-500 text-white px-4 py-2 rounded" routerLink="/checkout">Go to Checkout</a>
+      <a class="bg-gray-800 text-white px-4 py-2 rounded" routerLink="/checkout">Go to Checkout</a>
     </ng-template>
   </ng-container>
 </div>

@@ -1,0 +1,34 @@
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <a routerLink="/">
+            <fa-icon [icon]="faStore" class="h-4 w-4 text-white"></fa-icon>
+          </a>
+        </div>
+        <div class="hidden md:block">
+          <app-categories />
+        </div>
+      </div>
+      <div class="hidden md:block">
+        <div class="flex items-center gap-4 md:ml-6">
+          <button (click)="selectLanguage('en')" [ngClass]="{
+            'ring-2 ring-white': 'en' === language,
+          }" type="button"
+            class="h-8 w-8 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="sr-only">English</span>
+            <span class="h-6 w-6">🇺🇸</span>
+          </button>
+          <button (click)="selectLanguage('fr')" [ngClass]="{
+            'ring-2 ring-white': 'fr' === language,
+          }" type="button"
+            class="h-8 w-8 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="sr-only">French</span>
+            <span class="h-6 w-6">🇫🇷</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,13 @@
+<div class="ml-10 flex items-baseline space-x-4">
+  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+  <button (click)="selectCategory('')" [ngClass]="{
+    'bg-gray-900 text-white': '' === (selectedCategory$ | async),
+    'text-gray-300 hover:bg-gray-700 hover:text-white': '' !== (selectedCategory$ | async)
+  }" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">{{ title }}</button>
+  <button *ngFor="let category of categories$ | async | keyvalue" (click)="selectCategory(category.key)" [ngClass]="{
+      'bg-gray-900 text-white': category.key === (selectedCategory$ | async),
+      'text-gray-300 hover:bg-gray-700 hover:text-white': category.key !== (selectedCategory$ | async)
+    }" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+    {{category.key}} ({{category.value}})
+  </button>
+</div>
