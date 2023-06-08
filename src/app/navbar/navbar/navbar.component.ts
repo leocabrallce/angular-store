@@ -25,6 +25,7 @@ export class NavbarComponent {
 
   selectLanguage(language: string) {
     this.catalogueService.selectLanguage(language);
+    this.catalogueService.changeCategory('');
     this.language = language;
   }
 
