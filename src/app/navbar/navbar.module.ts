@@ -11,7 +11,7 @@ import { SearchComponent } from './search/search.component';
   declarations: [
     NavbarComponent,
     CategoriesComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     CommonModule,

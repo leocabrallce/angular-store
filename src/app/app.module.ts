@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { CartModule } from './cart/cart.module';
 import { CheckoutModule } from './checkout/checkout.module';
-import { LegalModule } from './legal/legal.module';
 import { APP_CONFIG, webAppConfig } from './app.settings';
 import { ProductsService } from '../app/products.service';
 import { NavbarModule } from './navbar/navbar.module';
@@ -31,7 +30,6 @@ function initializeAppFactory(
     CartModule,
     RouterModule,
     CheckoutModule,
-    LegalModule,
     NavbarModule
   ],
   providers: [
