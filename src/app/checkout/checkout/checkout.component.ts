@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CartService } from 'src/app/cart/cart.service';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,8 +21,19 @@ export class CheckoutComponent {
     acceptedTerms: new FormControl<boolean>(false, { validators: Validators.requiredTrue }),
   });
   dialogOpen = false;
+  countrySubscription: any;
 
-  constructor(private http: HttpClient, private cartService: CartService, private router: Router) { }
+  constructor(private http: HttpClient, private cartService: CartService) {
+    this.countrySubscription = this.form.get('country')!.valueChanges.subscribe((country) => {
+      if (country !== 'us') {
+        this.form.get('state')!.setValidators(Validators.required);
+        this.form.get('state')!.updateValueAndValidity();
+      } else {
+        this.form.get('state')!.clearValidators();
+        this.form.get('state')!.updateValueAndValidity();
+      }
+    });
+  }
 
   submit() {
     if (this.form.valid) {
