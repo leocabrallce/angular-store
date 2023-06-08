@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchComponent } from './search/search.component';
 import { CatalogueService } from './catalogue.service';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CatalogueService } from './catalogue.service';
     CommonModule,
     SharedModule,
     HttpClientModule,
+    RouterModule,
   ],
   exports: [
     CatalogueComponent,
