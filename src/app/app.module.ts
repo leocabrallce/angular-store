@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -10,6 +10,13 @@ import { CartModule } from './cart/cart.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { LegalModule } from './legal/legal.module';
 import { APP_CONFIG, webAppConfig } from './app.settings';
+import { ProductsService } from '../app/products.service';
+
+function initializeAppFactory(
+  productsService: ProductsService,
+): () => Promise<any> {
+  return () => productsService.loadProducts();
+}
 
 @NgModule({
   declarations: [
@@ -25,7 +32,17 @@ import { APP_CONFIG, webAppConfig } from './app.settings';
     CheckoutModule,
     LegalModule
   ],
-  providers: [{ provide: APP_CONFIG, useValue: webAppConfig }],
+  providers: [
+    {
+      provide: APP_CONFIG,
+      useValue: webAppConfig
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppFactory,
+      deps: [ProductsService],
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

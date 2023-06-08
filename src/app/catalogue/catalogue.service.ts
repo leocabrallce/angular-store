@@ -4,30 +4,22 @@ import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { AppConfig } from 'src/types/app-config.model';
 import { APP_CONFIG } from 'src/app/app.settings';
 import { HttpClient } from '@angular/common/http';
+import { ProductsService } from 'src/app/products.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogueService implements OnDestroy {
-  private pageSize: number;
-  private dataSourceURL: string;
-  private subscription: any;
-  language: string;
-
   constructor(
     @Inject(APP_CONFIG)
     config: AppConfig,
+    private productsService: ProductsService,
     private http: HttpClient,
   ) {
     this.pageSize = config.pageSize;
     this.dataSourceURL = config.dataSourceURL;
     this.language = config.language;
-
-    this.subscription = this.http.get<Product[]>(this.dataSourceURL, {
-      headers: {
-        'Accept-Language': this.language,
-      }
-    }).subscribe((products) => {
+    this.subscription = this.productsService.products$.subscribe((products) => {
       this.allProducts$.next(products);
     });
   }
@@ -36,6 +28,10 @@ export class CatalogueService implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  private pageSize: number;
+  private dataSourceURL: string;
+  private subscription: any;
+  language: string;
   keywords$ = new BehaviorSubject<string>('');
   selectedCategory$ = new BehaviorSubject<string>('');
   currentPage$ = new BehaviorSubject<number>(1);
