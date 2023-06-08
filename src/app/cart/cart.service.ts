@@ -27,5 +27,9 @@ export class CartService {
     this.cartItemsSubject.next(newItems);
   }
 
+  clearCart() {
+    this.cartItemsSubject.next([]);
+  }
+
   constructor() { }
 }
