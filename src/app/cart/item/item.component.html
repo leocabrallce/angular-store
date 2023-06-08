@@ -5,8 +5,8 @@
   </div>
   <div class="flex flex-col gap-2">
     <div class="w-8 h-8">
-      <button
-        class="w-8 h-8 text-slate-400 hover:text-red-500 border border-slate-400 hover:border-red-500 font-bold rounded transition"
+      <button [disabled]="deleteDisabled"
+        class="w-8 h-8 text-slate-400 disabled:pointer-events-none disabled:hidden hover:text-red-500 border border-slate-400 hover:border-red-500 font-bold rounded transition"
         (click)="removeFromCart(index)">
         <fa-icon [icon]="faTrash"></fa-icon>
       </button>

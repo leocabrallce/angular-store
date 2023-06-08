@@ -12,6 +12,8 @@ export class ItemComponent {
   product!: Product;
   @Input()
   index!: number;
+  @Input()
+  deleteDisabled!: boolean;
 
   faTrash = faTrash;
 
