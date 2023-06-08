@@ -7,7 +7,6 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import { ItemComponent } from './item/item.component';
 import { SharedModule } from '../shared/shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
-import { SearchComponent } from './search/search.component';
 import { CatalogueService } from './catalogue.service';
 import { RouterModule } from '@angular/router';
 
@@ -17,7 +16,6 @@ import { RouterModule } from '@angular/router';
     CatalogueComponent,
     ItemComponent,
     PaginationComponent,
-    SearchComponent,
   ],
   imports: [
     FontAwesomeModule,
@@ -29,7 +27,6 @@ import { RouterModule } from '@angular/router';
   exports: [
     CatalogueComponent,
     PaginationComponent,
-    SearchComponent,
   ],
   providers: [
     CatalogueService,

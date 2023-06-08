@@ -1,13 +1,10 @@
-<a routerLink="/">
-  <h2 class="text-gray-900 text-2xl font-semibold">
+<h2 class="text-gray-900 text-2xl font-semibold">
+  <a routerLink="/">
     E-commerce
-  </h2>
-</a>
-<div class="mt-5 flex flex-row justify-between">
-  <app-search />
-</div>
+  </a>
+</h2>
 <div class="my-6">
-  <div class="grid grid-cols-3 gap-x-4 gap-y-8">
+  <div class="grid grid-cols-4 gap-x-4 gap-y-8">
     <app-item *ngFor="let product of products$ | async" [product]="product" />
   </div>
 </div>

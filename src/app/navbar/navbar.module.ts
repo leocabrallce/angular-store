@@ -3,20 +3,23 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoriesComponent } from './categories/categories.component';
+import { SearchComponent } from './search/search.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    SearchComponent
   ]
 })
 export class NavbarModule { }

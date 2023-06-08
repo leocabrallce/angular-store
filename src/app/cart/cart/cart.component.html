@@ -1,9 +1,9 @@
 <div class="my-6 flex flex-col gap-2">
-  <div class="h-80 overflow-auto" *ngIf="(cartItems$ | async)?.length != 0; else emptyCart">
+  <div class="max-h-[480px] overflow-auto" *ngIf="(cartItems$ | async)?.length != 0; else emptyCart">
     <app-item *ngFor="let cartItem of cartItems$ | async; let i = index" [product]="cartItem" [index]="i" />
   </div>
   <ng-template #emptyCart>
-    <div class="h-80 rounded-md bg-slate-400 bg-opacity-10">
+    <div class="h-[480px] rounded-md bg-slate-400 bg-opacity-10">
       <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sm">Your cart is empty</div>
       </div>
