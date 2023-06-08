@@ -1,13 +1,21 @@
 <div class="my-6 flex flex-col gap-2">
-  <div class="h-80 overflow-auto">
+  <div class="h-80 overflow-auto" *ngIf="(cartItems$ | async)?.length != 0; else emptyCart">
     <app-item *ngFor="let cartItem of cartItems$ | async; let i = index" [product]="cartItem" [index]="i" />
   </div>
-  <div>Total: {{ total$ | async | currency }}</div>
+  <ng-template #emptyCart>
+    <div class="h-80 rounded-md bg-slate-400 bg-opacity-10">
+      <div class="flex flex-col items-center justify-center h-full">
+        <div class="text-sm">Your cart is empty</div>
+      </div>
+    </div>
+  </ng-template>
   <ng-container *ngIf="(cartItems$ | async)?.length != 0">
+    <div>Total: {{ total$ | async | currency }}</div>
     <a *ngIf="checkoutAvailable; else goToCheckout" class="border border-indigo-500 text-indigo-500 px-4 py-2 rounded"
       routerLink="/">Continue
       Shopping</a>
     <ng-template #goToCheckout>
       <a class="bg-indigo-500 text-white px-4 py-2 rounded" routerLink="/checkout">Go to Checkout</a>
-    </ng-template></ng-container>
+    </ng-template>
+  </ng-container>
 </div>
