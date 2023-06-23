@@ -13,7 +13,6 @@ export class ItemComponent {
 
   constructor(private cartService: CartService) { }
 
-  // TODO: Double check if I can import a service from a different module
   addToCart(product: Product): void {
     this.cartService.addItemsToCart(product);
   }

@@ -37,10 +37,7 @@ export class CheckoutComponent {
 
   submit() {
     if (this.form.valid) {
-      console.log(this.form.value);
-      this.cartService.clearCart();
       this.sendEmail();
-      this.dialogOpen = true;
     }
   }
 
@@ -51,7 +48,8 @@ export class CheckoutComponent {
     }, {
       responseType: 'text',
     }).subscribe((res) => {
-      console.log(res);
+      this.dialogOpen = true;
+      this.cartService.clearCart();
     });
   }
 }
